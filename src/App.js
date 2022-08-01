@@ -2,7 +2,6 @@ import './App.css';
 import { Route, Routes, BrowserRouter} from 'react-router-dom';
 import HomePage from './components/HomePage';
 import Search from './components/Search';
-import Login from './components/Login';
 
 function App() {
   return (
