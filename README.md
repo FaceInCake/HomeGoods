@@ -1,3 +1,5 @@
+[![NodeJS Build and Test](https://github.com/FaceInCake/HomeGoods/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/FaceInCake/HomeGoods/actions/workflows/node.js.yml)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
