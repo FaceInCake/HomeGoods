@@ -12,7 +12,7 @@ function App() {
           <Route path="/">
             <Route index element={<HomePage/>}/>
             <Route path="Search" element={<Search/>}/>
-        <a
+            <Route path="Login" element={<Login/>}/>
             
             {/* <Route path="*" element={<Error404/>} */}
           </Route>
