@@ -7,5 +7,4 @@ SET user=eppel
 REM Password is asked for when Deploy is called
 
 CD %~dp0/
-npm run build
-SCP -r /build/** %user%@%host%:%remotepath%
+SCP -r build/** %user%@%host%:%remotepath%
