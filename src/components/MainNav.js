@@ -49,6 +49,14 @@ function MainNavSearchForm (props) {
 function MainNav (props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = ()=> setIsOpen(!isOpen);
+
+  function logoutCallback (event) {
+    event.preventDefault();
+    fetch("php/Logout.php")
+    .catch(reason => {
+      console.error("Logout error occured: "+reason);
+    });
+  }
   
   return (
     <div className='MainNav'>
@@ -62,6 +70,7 @@ function MainNav (props) {
           <BS.Nav className='container-fluid' navbar>
             <NavLink name='Home' to='/'/>
             <NavLink name='Login' to='/Login'/>
+            <NavLink name='Logout' to='/' />
             <BS.UncontrolledDropdown nav inNavbar>
               <BS.DropdownToggle nav caret>About</BS.DropdownToggle>
               <BS.DropdownMenu end>
