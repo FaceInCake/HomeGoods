@@ -11,7 +11,14 @@ function Login (props) {
 
   function loginCallback (event) {
     event.preventDefault();
-
+    fetch("php/LoginAttempt.php")
+    .then(r => r.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(reason => {
+      console.error("Login error occured: "+reason);
+    });
   }
 
   function signupCallback (event) {

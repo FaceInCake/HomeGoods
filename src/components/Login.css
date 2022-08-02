@@ -1,10 +1,8 @@
 
 .Login {
-    background-color: green;
-    display: contents;
+    background-color: gray;
 }
 
 .Login .MainContent {
-    background-color: orange;
-    
+    background-color: gray;
 }
