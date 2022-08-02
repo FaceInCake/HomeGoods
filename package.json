@@ -1,6 +1,7 @@
 {
   "name": "homegoods",
   "version": "0.1.0",
+  "description": "e-commerce website for retailing furniture and other various items",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
@@ -32,7 +33,6 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
-    "php-server": "^1.0.0",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
