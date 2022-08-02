@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter} from 'react-router-dom';
 import HomePage from './components/HomePage';
 import Search from './components/Search';
 import Login from './components/Login';
+import Error404 from './components/Error404';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
             <Route path="Search" element={<Search/>}/>
             <Route path="Login" element={<Login/>}/>
             
-            {/* <Route path="*" element={<Error404/>} */}
+            <Route path="*" element={<Error404/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
