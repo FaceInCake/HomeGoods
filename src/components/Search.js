@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Spinner, List } from 'reactstrap';
-import { db_get } from '../Database';
 
 function Search (props) {
   const [loading, setLoading] = useState(true);
   const [history, setHistory] = useState([]);
 
-  useEffect(() => {
-    db_get("SearchHistory")
-      .then(data => {
-        setLoading(false);
-        setHistory(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   db_get("SearchHistory")
+  //     .then(data => {
+  //       setLoading(false);
+  //       setHistory(data);
+  //     });
+  // }, []);
 
   const SimpleLi = props => (<li key={props.value}>{props.value}</li>)
 
