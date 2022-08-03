@@ -16,30 +16,39 @@ function Login (props) {
 
   function loginCallback (event) {
     event.preventDefault();
-    const username = usernameLoginInput.current.value;
-    post("./php/LoginAttempt.php", {
-      username: username,
-      password: passwordLoginInput.current.value
-    }, d => {
-      sessionStorage.setItem("loggedin", d.loggedin??false);
+    attemptLogin({
+      username: usernameLoginInput.current.value,
+      password: passwordLoginInput.current.value,
+    });
+  }
+
+  function attemptLogin (data) {
+    post("./php/LoginAttempt.php", data, d => {
       if (d.loggedin) {
-        userContext.login(d.uid, username);
+        userContext.login(d.uid, data.username);
         navigate("/");
       }
       alert(d.message);
+      //TODO: Swap `alert` for a modal
     });
   }
 
   function signupCallback (event) {
     event.preventDefault();
-    post("./php/SignupAttempt.php", {
+    const data = {
       username: usernameSignupInput.current.value,
       password: passwordSignupInput.current.value,
-      email: emailSignupInput.current.value
-    }, d => {
-      console.log(d);
-    })
+      email: emailSignupInput.current.value,
+    };
+    post("./php/SignupAttempt.php", data, d => {
+      alert(d.message);
+      if (d.success)
+        attemptLogin(data);
+    });
   }
+  
+  const usernameRegex = /^\w{4,24}$/ ;
+  const passwordRegex = /^.{8,32}$/ ;
 
   return (
     <div className='Login d-lg-flex'>
@@ -49,9 +58,11 @@ function Login (props) {
           <CardTitle className='title pb-3'><h3>Login</h3></CardTitle>
           <Form className='form' onSubmit={loginCallback}>
             <Label htmlFor='usernameLogin' hidden>Username login</Label>
-              <Input id='usernameLogin' className='mb-3' placeholder='Username' innerRef={usernameLoginInput} required />
+              <Input id='usernameLogin' className='mb-3' placeholder='Username' innerRef={usernameLoginInput}
+                minLength={4} maxLength={24} required />
             <Label htmlFor='passordLogin' hidden>Password login</Label>
-              <Input id='passwordLogin' className='mb-3' placeholder='Password' type='password' innerRef={passwordLoginInput} required />
+              <Input id='passwordLogin' className='mb-3' placeholder='Password' innerRef={passwordLoginInput}
+                type='password' minLength={8} maxLength={32} required />
             <Button>Login</Button>
           </Form>
         </Card>
@@ -62,11 +73,14 @@ function Login (props) {
           <CardTitle className='title pb-3'><h3>Signup</h3></CardTitle>
           <Form className='form' onSubmit={signupCallback}>
             <Label htmlFor='usernameSignup' hidden>Username Signup</Label>
-              <Input id='usernameSignup' className='mb-3' placeholder='Username' innerRef={usernameSignupInput} required />
+              <Input id='usernameSignup' className='mb-3' placeholder='Username' innerRef={usernameSignupInput}
+                minLength='4' maxLength='24' required />
             <Label htmlFor='emailSignup' hidden>email Signup</Label>
-              <Input id='emailSignup' className='mb-3' placeholder='email' type='email' innerRef={emailSignupInput} required />
+              <Input id='emailSignup' className='mb-3' placeholder='email' innerRef={emailSignupInput}
+                type='email' minLength={10} maxLength={32} required />
             <Label htmlFor='passwordSignup' hidden>Password Signup</Label>
-              <Input id='passwordSignup' className='mb-3' placeholder='Password' type='password' innerRef={passwordSignupInput} required />
+              <Input id='passwordSignup' className='mb-3' placeholder='Password' innerRef={passwordSignupInput}
+                type='password' minLength={8} maxLength={32} required />
             <div className='mb-3'>
               <Input id='acceptTerms' className='me-3' innerRef={acceptTerms} type='checkbox' required />
               <Label htmlFor='acceptTerms'>I accept the <Link to='../TermsAndService'>Terms and Services</Link></Label>

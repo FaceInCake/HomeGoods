@@ -1,7 +1,11 @@
+import { Carousel } from "reactstrap";
 
 function HomePage (props) { return (
   <div className='HomePage'>
-    Home Page
+    Home page
+    {/* <Carousel>
+
+    </Carousel> */}
   </div>
 );}
 
