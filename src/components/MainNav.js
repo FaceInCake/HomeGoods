@@ -1,14 +1,14 @@
 import './MainNav.css';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import * as BS from 'reactstrap';
-import { db_set } from '../Database';
+import { UserContext } from '../store/UserContext';
 
 // Use 'name' for the display text
 // Use 'to' for the link
 const NavLink = (props) => {return (
   <BS.NavItem>
-    <Link className='nav-link' to={props.to} {...props}>
+    <Link className='nav-link' to={props.to}>
       {props.name}
     </Link>
   </BS.NavItem>
@@ -30,8 +30,8 @@ function MainNavSearchForm (props) {
 
   function onSearchCallback (event) {
     event.preventDefault();
-    db_set("SearchHistory", {value: searchInput.current.value})
-      .then(() => navigate('/Search'));
+    // db_set("SearchHistory", {value: searchInput.current.value})
+    //   .then(() => navigate('/Search'));
   }
 
   return (
@@ -47,8 +47,10 @@ function MainNavSearchForm (props) {
 
 // Our main nav thing
 function MainNav (props) {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = ()=> setIsOpen(!isOpen);
+  const userContext = useContext(UserContext);
 
   function logoutCallback (event) {
     event.preventDefault();
@@ -57,6 +59,8 @@ function MainNav (props) {
     .catch(reason => {
       console.error("Logout error occured: "+reason);
     });
+    userContext.logout();
+    navigate("./Login");
   }
   
   return (
@@ -70,12 +74,15 @@ function MainNav (props) {
         <BS.Collapse isOpen={isOpen} navbar>
           <BS.Nav className='container-fluid' navbar>
             <NavLink name='Home' to='/'/>
-            <NavLink name='Login' to='/Login'/>
-            <BS.NavItem>
-              <Link className='nav-link' to='/' onClick={logoutCallback}>
-                Logout
-              </Link>
-            </BS.NavItem>
+            {userContext.loggedin ?
+              <BS.NavItem>
+                <Link className='nav-link' to={'./Login'} onClick={logoutCallback}>
+                  Logout
+                </Link>
+              </BS.NavItem>
+            :
+              <NavLink name='Login' to='/Login'/>
+            }
             <BS.UncontrolledDropdown nav inNavbar>
               <BS.DropdownToggle nav caret>About</BS.DropdownToggle>
               <BS.DropdownMenu end>

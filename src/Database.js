@@ -1,20 +1,17 @@
 
-const DBURL = "https://uwin-homegoods-default-rtdb.firebaseio.com/";
-
-function db_set (table, data) {
-  return fetch(
-    DBURL+table+".json",
-    {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {'Content-Type': 'application/json'}
-    }
-  );
+function post (url, data, callback) {
+  fetch(url, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data),
+  })
+  .then(r => {
+    r.text().then(t => t.startsWith("<") ? console.log(t) : callback(JSON.parse(t)));
+    return r;
+  })
+  .catch(reason => {
+    console.error("Login error occured: "+reason);
+  });
 }
 
-function db_get (table) {
-  return fetch(DBURL+table+".json")
-    .then(r => r.json());
-}
-
-export { db_set, db_get };
+export { post };
