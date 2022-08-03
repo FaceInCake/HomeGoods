@@ -18,8 +18,6 @@
 .env.test.local
 .env.production.local
 
-/public/php/**
-!/public/php/*.php
 
 npm-debug.log*
 yarn-debug.log*
