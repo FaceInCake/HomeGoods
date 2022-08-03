@@ -45,18 +45,23 @@
             return false;
         }
         $stmt->execute($args);
+        $id = $con->insert_id;
         $res = $stmt->get_result();
-        if ($res === false) {
-            if ($DEBUG) {
-                var_dump('$q\n');
-                $ERR_MSG = "Query failed: " . $con->error;
-            } else {
-                $ERR_MSG = $ERR500;
-            }
-            $con->close();
-            return false;
-        }
+        $stmt->close();
         $con->close();
+        if ($res === false) {
+            if ($id === 0) {
+                if ($DEBUG) {
+                    var_dump('$q\n');
+                    $ERR_MSG = "Query failed: " . $con->error;
+                } else {
+                    $ERR_MSG = $ERR500;
+                }
+                return false;
+            } else {
+                return $id;
+            }
+        }
         return $res;
     }
 

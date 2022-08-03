@@ -6,7 +6,8 @@ function post (url, data, callback) {
     body: JSON.stringify(data),
   })
   .then(r => {
-    r.text().then(t => t.startsWith("<") ? console.log(t) : callback(JSON.parse(t)));
+    r.text()
+      .then(t => !t.startsWith("{") ? console.log(t) : callback(JSON.parse(t)));
     return r;
   })
   .catch(reason => {
