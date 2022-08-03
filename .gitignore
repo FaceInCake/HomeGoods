@@ -18,8 +18,7 @@
 .env.test.local
 .env.production.local
 
-# PHP .env file(s)
-public/php/vars/
+/public/php/vars/
 
 
 npm-debug.log*

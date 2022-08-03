@@ -1,6 +1,6 @@
 <?php
 
-    require_once '.env';
+    require_once 'vars/.env';
 
     $DEBUG = true; // Configure me!
 
