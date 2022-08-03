@@ -15,6 +15,11 @@ body {
   font-family: 'Tahoma', 'Arial';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+
+li {
+  text-align: left;
 }
 
 #root {

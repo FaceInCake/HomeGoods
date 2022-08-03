@@ -2,6 +2,8 @@
   "name": "homegoods",
   "version": "0.1.0",
   "description": "e-commerce website for retailing furniture and other various items",
+  "author": "Matthew Eppel",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",

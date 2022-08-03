@@ -1,6 +1,6 @@
 import './MainNav.css';
 import { useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import * as BS from 'reactstrap';
 import { db_set } from '../Database';
 
@@ -8,7 +8,7 @@ import { db_set } from '../Database';
 // Use 'to' for the link
 const NavLink = (props) => {return (
   <BS.NavItem>
-    <Link className='nav-link' to={props.to}>
+    <Link className='nav-link' to={props.to} {...props}>
       {props.name}
     </Link>
   </BS.NavItem>
@@ -17,7 +17,7 @@ const NavLink = (props) => {return (
 // Use 'name' property for what it displays AND links to
 const DropdownItem = (props) => {return (
   <BS.DropdownItem>
-    <Link className='dropdown-item' to={'/'+props.name}>
+    <Link className='dropdown-item' to={'/'+props.to}>
       {props.name}
     </Link>
   </BS.DropdownItem>
@@ -52,6 +52,7 @@ function MainNav (props) {
 
   function logoutCallback (event) {
     event.preventDefault();
+    console.log("Logging out");
     fetch("php/Logout.php")
     .catch(reason => {
       console.error("Logout error occured: "+reason);
@@ -70,19 +71,25 @@ function MainNav (props) {
           <BS.Nav className='container-fluid' navbar>
             <NavLink name='Home' to='/'/>
             <NavLink name='Login' to='/Login'/>
-            <NavLink name='Logout' to='/' />
+            <BS.NavItem>
+              <Link className='nav-link' to='/' onClick={logoutCallback}>
+                Logout
+              </Link>
+            </BS.NavItem>
             <BS.UncontrolledDropdown nav inNavbar>
               <BS.DropdownToggle nav caret>About</BS.DropdownToggle>
               <BS.DropdownMenu end>
-                <DropdownItem name="Company"/>
-                <DropdownItem name="User Guide"/>
                 <DropdownItem name="About Us"/>
+                <DropdownItem name="User Guide"/>
+                <DropdownItem name="Contact Us" to="Contact"/>
+                <DropdownItem name="Terms and Services" to="TermsAndService"/>
               </BS.DropdownMenu>
             </BS.UncontrolledDropdown>
             <MainNavSearchForm />
           </BS.Nav>
         </BS.Collapse>
       </BS.Navbar>
+      <Outlet/>
     </div>
   );
 }
