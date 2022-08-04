@@ -30,8 +30,9 @@ function MainNavSearchForm (props) {
 
   function onSearchCallback (event) {
     event.preventDefault();
-    // db_set("SearchHistory", {value: searchInput.current.value})
-    //   .then(() => navigate('/Search'));
+    navigate("/Search", {
+      params: { query: searchInput.current.value}
+    });
   }
 
   return (
@@ -62,10 +63,12 @@ function MainNav (props) {
     userContext.logout();
     navigate("./Login");
   }
+
+  const dashboardItem = () => userContext.admin && <DropdownItem name="Admin Dashboard" to="Dashboard"/>;
   
   return (
     <div className='MainNav'>
-      <BS.Navbar className='bg-dark p-2' expand='lg' dark>
+      <BS.Navbar className='bg-primary p-2' expand='lg' dark>
         <BS.NavbarBrand>
           <img src='Icon64.png' width={32} height={32}/>
           <span className='p-2'>Home Goods</span>
@@ -75,19 +78,26 @@ function MainNav (props) {
           <BS.Nav className='container-fluid' navbar>
             <NavLink name='Home' to='/'/>
             {userContext.loggedin ?
-              <BS.NavItem>
-                <Link className='nav-link' to={'./Login'} onClick={logoutCallback}>
-                  Logout
-                </Link>
-              </BS.NavItem>
+              <BS.UncontrolledDropdown nav inNavbar>
+                <BS.DropdownToggle nav caret>Account</BS.DropdownToggle>
+                <BS.DropdownMenu end>
+                  <DropdownItem name="Settings" to="Settings" />
+                  <dashboardItem/>
+                  <DropdownItem name="User Guide" to="UserGuide"/>
+                  <BS.DropdownItem>
+                    <Link className='dropdown-item' to={'./Login'} onClick={logoutCallback}>
+                      Logout
+                    </Link>
+                  </BS.DropdownItem>
+                </BS.DropdownMenu>
+              </BS.UncontrolledDropdown>
             :
               <NavLink name='Login' to='/Login'/>
             }
             <BS.UncontrolledDropdown nav inNavbar>
               <BS.DropdownToggle nav caret>About</BS.DropdownToggle>
               <BS.DropdownMenu end>
-                <DropdownItem name="About Us"/>
-                <DropdownItem name="User Guide"/>
+                <DropdownItem name="About Us" to="About"/>
                 <DropdownItem name="Contact Us" to="Contact"/>
                 <DropdownItem name="Terms and Services" to="TermsAndService"/>
               </BS.DropdownMenu>

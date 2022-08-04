@@ -7,6 +7,10 @@ import TermsAndService from './components/TermsAndService';
 import Contact from './components/Contact';
 import MainNav from './components/MainNav';
 import Ticket from './components/Ticket';
+import About from './components/About';
+import Settings from './components/Settings';
+import Dashboard from './components/Dashboard';
+import UserGuide from './components/UserGuide';
 
 function App() {
   return (
@@ -16,7 +20,11 @@ function App() {
           <Route path="/" element={<MainNav/>}>
             <Route index element={<HomePage/>}/>
             <Route path="Search" element={<Search/>}/>
+            <Route path="Dashboard" element={<Dashboard/>}/>
             <Route path="Login" element={<Login/>}/>
+            <Route path="Settings" element={<Settings/>}/>
+            <Route path="UserGuide" element={<UserGuide/>}/>
+            <Route path="About" element={<About/>}/>
             <Route path="Contact" element={<Contact/>}/>
             <Route path="TermsAndService" element={<TermsAndService/>}/>
             <Route path="Ticket" element={<Ticket/>}/>

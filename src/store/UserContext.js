@@ -4,6 +4,7 @@ const UserContext = createContext({
     loggedin: false,
     uid: -1,
     username: '',
+    admin: false,
     login: (uid, username) => {},
     logout: () => {},
 });
@@ -13,19 +14,22 @@ function UserContextProvider (props) {
         loggedin: ((sessionStorage.getItem('loggedin')??false)==='true'),
         uid: parseInt(sessionStorage.getItem('uid')??-1),
         username: sessionStorage.getItem('username')??'',
+        admin: (sessionStorage.getItem('admin')??false)==='true',
     });
 
     useEffect(() => {
         sessionStorage.setItem('loggedin', user.loggedin);
         sessionStorage.setItem('uid', user.uid);
         sessionStorage.setItem('username', user.username);
+        sessionStorage.setItem('admin', user.admin);
     }, [user]);
 
-    function loginHandler (_uid, _username) {
+    function loginHandler (_uid, _username, _admin) {
         setUser({
             loggedin: true,
             uid: _uid??-1,
             username: _username??'',
+            admin: _admin??false,
         });
     }
 
@@ -34,6 +38,7 @@ function UserContextProvider (props) {
             loggedin: false,
             uid: -1,
             username: '',
+            admin: false,
         })
     }
 

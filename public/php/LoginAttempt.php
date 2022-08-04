@@ -34,7 +34,7 @@
         if ($username === false) return error400_badinput;
         $password = sanitize('.{8,32}', 'password', 32);
         if ($password === false) return error400_badinput;
-        $res = query("SELECT uid, username, password FROM users WHERE username=?;", $username);
+        $res = query("SELECT uid, username, password, admin FROM users WHERE username=?;", $username);
         if ($res->num_rows != 1) return error400_incorrect;
         $row = $res->fetch_assoc();
         $hash = $row['password'];
@@ -46,6 +46,7 @@
             'loggedin' => true,
             'message' => 'Successfully logged in',
             'uid' => $row['uid'],
+            'admin' => boolval($row['admin']),
         );
     }
 
