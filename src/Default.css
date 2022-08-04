@@ -1,0 +1,54 @@
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Tahoma', 'Arial';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background);
+}
+
+li {
+    text-align: left;
+}
+
+#root {
+    height: 100%;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+
+
+.ThemeDefault {
+    --background: var(--bs-light);
+}
+
+.ThemePrimary {
+    --bs-primary: #536ab1;
+    --bs-primary-rgb: 83, 106, 177;
+    --background: var(--bs-secondary); 
+}
+.ThemePrimary .card {
+    background-color: var(--bs-gray-200);
+}
+
+.ThemeSecondary {
+    --bs-primary: #536ab1;
+    --bs-primary-rgb: 83, 106, 177;
+    --background: var(--bs-dark);
+    --bs-body-color: var(--bs-gray-100);
+    --bs-accordion-btn-color: black;
+}
+.ThemeSecondary .accordion {
+    
+}
+.ThemeSecondary .card {
+    background-color: var(--bs-gray-700);
+}

@@ -15,7 +15,7 @@ function TermsAndService (props) {
     <div className='TermsAndService'>
       <Card className='m-3 m-lg-5 p-lg-5'>
         <CardBody>
-          <CardTitle className="h3">
+          <CardTitle className="h3 text-center">
             <strong>Terms of Service</strong>
           </CardTitle>
           <CardText>

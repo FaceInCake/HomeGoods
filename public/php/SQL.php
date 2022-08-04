@@ -17,9 +17,9 @@
         return "'$s'";
     }
 
+    // Returns either the row_id affected or the result set
     // Returns false on error
     // Check $ERR_MSG if you want
-    // Returns the respose object on success
     function query ($q, ...$args) {
         global $DEBUG; global $ERR_MSG; global $ERR500;
         if ($DEBUG) mysqli_report(MYSQLI_REPORT_ERROR|MYSQLI_REPORT_STRICT);
@@ -44,20 +44,14 @@
             $con->close();
             return false;
         }
-        $stmt->execute($args);
+        if (! $stmt->execute($args)) return $ERR500;
         $id = $con->insert_id;
         $res = $stmt->get_result();
         $stmt->close();
         $con->close();
         if ($res === false) {
             if ($id === 0) {
-                if ($DEBUG) {
-                    var_dump('$q\n');
-                    $ERR_MSG = "Query failed: " . $con->error;
-                } else {
-                    $ERR_MSG = $ERR500;
-                }
-                return false;
+                return true;
             } else {
                 return $id;
             }

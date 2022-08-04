@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import bootstrap from './bootstrap/bootstrap.min.css';
-import './index.css';
 import App from './App';
 import { UserContextProvider } from './store/UserContext';
 // import reportWebVitals from './reportWebVitals';
+import './Default.css';
+
+export const themes = [
+  "ThemeDefault", "ThemePrimary", "ThemeSecondary"
+];
+
+document.documentElement.className
+  = localStorage.getItem("theme") ?? "ThemeDefault";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
