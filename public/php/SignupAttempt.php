@@ -3,12 +3,6 @@
     require_once 'SQL.php';
     require_once 'Post.php';
 
-    const error400_badinput = array(
-        'status' => 400,
-        'loggedin' => false,
-        'message' => 'Invalid parameters'
-    );
-
     const error400_incorrect = array(
         'status' => 400,
         'loggedin' => false,

@@ -27,13 +27,17 @@
             'success' => false,
         );
         $rows = $res->fetch_all(MYSQLI_ASSOC);
-        if ($rows !== false) {
-            $assoc = array();
-            foreach ($rows as $i => $value) {
-                $assoc["$i"] = $value;
-            }
-            return $assoc;
-        }
+        if ($rows !== false) return array(
+            'status' => 200,
+            'success' => true,
+            'message' => 'Search results retrieved successfully',
+            'results' => $rows,
+        );
+        // $assoc = array();
+        // foreach ($rows as $i => $value) {
+        //     $assoc["$i"] = $value;
+        // }
+        // return $assoc;
         return array(
             'status' => 500,
             'message' => 'Internal server error',
