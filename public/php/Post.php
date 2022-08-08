@@ -17,7 +17,7 @@
         $_GET = json_decode(file_get_contents('php://input'), true);
         return json_last_error() == JSON_ERROR_NONE;
     }
-    
+
     // Function for stricly sanitizing a POST[key] from a regex pattern
     // $pattern is a regex pattern, post-formatted for you as "/\A$pattern\Z/"
     // $key is for indexing $_POST
