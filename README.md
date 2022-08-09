@@ -16,8 +16,9 @@
   8. Create a user to interact with this database
 9. Create a `.env` file in the `public/php/vars` folder
 10. Populate the `.env` file with php variables of the database credentials
-11. Run `npm run build`
-12. You should be able to visit `localhost` with no issue
+11. Populate the database using the [SQL Files](working/sql)
+12. Run `npm run build`
+13. You should be able to visit `localhost` with no issue
 
 ## Dependencies
 
