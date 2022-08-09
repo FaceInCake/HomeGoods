@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, CardBody, CardImg, CardTitle, CardText, Placeholder } from "reactstrap";
-import { themes } from "../index.js";
+import { themes } from "../App";
 import { UserContext } from "../store/UserContext";
 import { get, post } from "../Database";
 
