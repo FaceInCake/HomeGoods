@@ -12,6 +12,13 @@ import Settings from './components/Settings';
 import Dashboard from './components/Dashboard';
 import UserGuide from './components/UserGuide';
 
+export const themes = [
+  "ThemeDefault", "ThemePrimary", "ThemeSecondary"
+];
+
+document.documentElement.className
+  = localStorage.getItem("theme") ?? "ThemeDefault";
+
 function App() {
   return (
     <div className="App h-100">
