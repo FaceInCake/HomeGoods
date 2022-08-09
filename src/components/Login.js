@@ -25,7 +25,7 @@ function Login (props) {
   function attemptLogin (data) {
     post("./php/LoginAttempt.php", data, d => {
       if (d.loggedin) {
-        userContext.login(d.uid, data.username);
+        userContext.login(d.uid, data.username, d.admin);
         navigate("/");
       }
       alert(d.message);
