@@ -55,6 +55,8 @@ function MainNav (props) {
 
   function logoutCallback (event) {
     event.preventDefault();
+    const ans = confirm("Are you sure you want to log out?")
+    if (ans !== true) return;
     console.log("Logging out");
     fetch("php/Logout.php")
     .catch(reason => {
