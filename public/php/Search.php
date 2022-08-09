@@ -20,7 +20,7 @@
             'message' => 'Bad search paramater',
             'success' => false,
         );
-        $res = query("SELECT * FROM items WHERE name LIKE '%_{$q}_%';");
+        $res = query("SELECT * FROM items WHERE name LIKE '%{$q}%';");
         if ($res === false) return array(
             'status' => 500,
             'message' => 'Internal server error',
