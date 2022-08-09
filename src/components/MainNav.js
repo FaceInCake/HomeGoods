@@ -65,8 +65,6 @@ function MainNav (props) {
     userContext.logout();
     navigate("./Login");
   }
-
-  const DashboardItem = () => userContext.admin && <DropdownItem name="Admin Dashboard" to="Dashboard"/>;
   
   return (
     <div className='MainNav'>
@@ -84,7 +82,8 @@ function MainNav (props) {
                 <BS.DropdownToggle nav caret>Account</BS.DropdownToggle>
                 <BS.DropdownMenu end>
                   <DropdownItem name="Settings" to="Settings" />
-                  <DashboardItem/>
+                  {userContext.admin &&
+                    <DropdownItem name="Admin Dashboard" to="Dashboard"/>}
                   <DropdownItem name="User Guide" to="UserGuide"/>
                   <BS.DropdownItem>
                     <Link className='dropdown-item' to={'./Login'} onClick={logoutCallback}>

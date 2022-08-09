@@ -5,7 +5,7 @@ const UserContext = createContext({
     uid: -1,
     username: '',
     admin: false,
-    login: (uid, username) => {},
+    login: (uid, username, admin) => {},
     logout: () => {},
 });
 
@@ -46,6 +46,7 @@ function UserContextProvider (props) {
         loggedin: user.loggedin,
         uid: user.uid,
         username: user.username,
+        admin: user.admin,
         login: loginHandler,
         logout: logoutHandler,
     };
