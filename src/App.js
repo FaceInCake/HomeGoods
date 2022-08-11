@@ -13,6 +13,7 @@ import About from './components/About';
 import Settings from './components/Settings';
 import Dashboard from './components/Dashboard';
 import UserGuide from './components/UserGuide';
+import ViewItem from './components/ViewItem';
 
 ////////////////////////
 //    Theme Stuff     //
@@ -41,6 +42,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainNav/>}>
             <Route index element={<HomePage/>}/>
+            <Route path="ViewItem" element={<ViewItem/>}/>
             <Route path="Search" element={<Search/>}/>
             <Route path="Dashboard" element={<Dashboard/>}/>
             <Route path="Login" element={<Login/>}/>
