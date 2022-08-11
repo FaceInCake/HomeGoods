@@ -1,0 +1,43 @@
+
+:root {
+    margin: 0;
+    font-family: 'Tahoma', 'Arial';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {height: 100%;}
+body {height: 100%;}
+#root {height: 100%;}
+.App {height: 100%;}
+
+/////////////////////////////////////////////
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+$_primary: var(--bs-primary) !default;
+$_primary-text: white !default;
+$_secondary: var(--bs-light) !default;
+$_secondary-text: white !default;
+$_background: white !default;
+
+
+body {
+    background-color: $_secondary !important;
+}
+
+div.MainNav nav.navbar {
+    background-color: $_primary;
+    .navbar-brand {
+        color: $_primary-text;
+    }
+    .nav-link {
+        color: $_primary-text;
+    }
+}
+
+.Dashboard .MainContent  {
+    background-color: $_background;
+    border: 1px solid var(--bs-gray-300);
+    border-top: 0;
+}

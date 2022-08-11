@@ -1,4 +1,6 @@
-import { Route, Routes, BrowserRouter} from 'react-router-dom';
+import { Route, Routes, BrowserRouter }
+from 'react-router-dom';
+
 import HomePage from './components/HomePage';
 import Search from './components/Search';
 import Login from './components/Login';
@@ -12,16 +14,29 @@ import Settings from './components/Settings';
 import Dashboard from './components/Dashboard';
 import UserGuide from './components/UserGuide';
 
+////////////////////////
+//    Theme Stuff     //
+////////////////////////
+
 export const themes = [
-  "ThemeDefault", "ThemePrimary", "ThemeSecondary"
+  "ThemePrimary", "ThemePrimaryDark", "ThemeSecondary", "ThemeSecondaryDark", "Bootstrap"
 ];
 
-document.documentElement.className
-  = localStorage.getItem("theme") ?? "ThemeDefault";
+const __theme = localStorage.getItem("theme") ?? "ThemePrimary";
+import("./styles/"+__theme+".scss");
+// import "./styles/Default.scss"; // Import default after
+
+export function changeTheme (theme) {
+  localStorage.setItem("theme", theme); 
+  import("./styles/"+theme+".scss");
+  window.location.reload();
+}
+
+/////////////////////////////////////////////////////////////////////////////
 
 function App() {
   return (
-    <div className="App h-100">
+    <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainNav/>}>

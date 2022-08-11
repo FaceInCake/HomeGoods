@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import bootstrap from './bootstrap/bootstrap.min.css';
 import App from './App';
 import { UserContextProvider } from './store/UserContext';
 // import reportWebVitals from './reportWebVitals';
-import './Default.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

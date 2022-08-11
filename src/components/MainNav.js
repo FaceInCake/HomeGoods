@@ -68,7 +68,7 @@ function MainNav (props) {
   
   return (
     <div className='MainNav'>
-      <BS.Navbar className='bg-primary p-2' expand='lg' dark>
+      <BS.Navbar className='p-2' expand='lg'>
         <BS.NavbarBrand>
           <img src='Icon64.png' width={32} height={32}/>
           <span className='p-2'>Home Goods</span>
