@@ -20,6 +20,7 @@ $_primary-text: white !default;
 $_secondary: var(--bs-light) !default;
 $_secondary-text: white !default;
 $_background: white !default;
+$_background-text: black !default;
 
 
 body {
@@ -38,11 +39,22 @@ div.MainNav nav.navbar {
 }
 
 // Dashboard
-.Dashboard div.MainContent {
-    background-color: $_background;
-    border: 1px solid var(--bs-gray-300);
-    border-top: 0;    
+.Dashboard {
+    .nav-item .nav-link.active {
+        background-color: $_background;
+        color: $_background-text;
+    }
+    div.MainContent {
+        background-color: $_background;
+        border: 1px solid var(--bs-gray-300);
+        border-top: 0;
+    }
 }
 .modal input, .modal textarea {
     margin-bottom: 1rem;
+}
+
+// Make Search Result Cards click responsive
+.ResultCard .card {
+    cursor: pointer;
 }
