@@ -35,6 +35,7 @@
         if (! password_verify($password, $hash)) return error400_incorrect;
         // We're good!
         $_SESSION['uid'] = $row['uid'];
+        $_SESSION['admin'] = boolval($row['admin']);
         return array(
             'status' => 200,
             'loggedin' => true,

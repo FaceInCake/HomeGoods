@@ -26,6 +26,7 @@ body {
     background-color: $_secondary !important;
 }
 
+// Main Navigation bar
 div.MainNav nav.navbar {
     background-color: $_primary;
     .navbar-brand {
@@ -36,8 +37,12 @@ div.MainNav nav.navbar {
     }
 }
 
-.Dashboard .MainContent  {
+// Dashboard
+.Dashboard div.MainContent {
     background-color: $_background;
     border: 1px solid var(--bs-gray-300);
-    border-top: 0;
+    border-top: 0;    
+}
+.modal input, .modal textarea {
+    margin-bottom: 1rem;
 }
