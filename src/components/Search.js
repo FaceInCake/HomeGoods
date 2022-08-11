@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Spinner, List, Card, CardBody, CardImg, CardTitle, CardText, CardSubtitle } from 'reactstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Spinner, Card, CardBody, CardImg, CardTitle, CardText, CardSubtitle } from 'reactstrap';
 import { post } from '../Database';
 
 function Search (props) {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const [loading, setLoading] = useState(true);
   const [itemList, setItemList] = useState([]);
@@ -14,8 +15,6 @@ function Search (props) {
     const { query } = state;
     if (query === null) return;
 
-    console.log(("Querying..."));
-    console.log(query);
     post("./php/Search.php", {
       query: query
     }, d => {
@@ -27,11 +26,18 @@ function Search (props) {
     });
   }, []);
 
+  function lookAtItem (event, _itemid) {
+    event.preventDefault();
+    navigate('../ViewItem', {
+      state: {itemid: _itemid}
+    });
+  }
+
   function ResultCard (props) {
     const { item } = props;
     return (
       <div className='ResultCard m-0 p-3 col-sm-6 col-md-4 col-lg-3'>
-        <Card>
+        <Card onClick={e=>lookAtItem(e,item.id)}>
           <CardImg top alt={item.caption} src={item.imageurls.split(';',1)[0]} />
           <CardBody>
             <CardTitle tag='h3' className='title pb-3'>{item.name}</CardTitle>

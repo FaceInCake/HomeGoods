@@ -9,7 +9,12 @@
             'message' => 'You must be logged in',
             'success' => false,
         );
-        $id = sanitize('\d+', 'id', 10);
+        if (!getPost()) return array(
+            'status' => 500,
+            'loggedin' => false,
+            'message' => 'Failed to retrieve the query parameters'
+        );
+        $id = sanitize('\d+', "itemid", 10);
         if ($id === false) return error400_badinput;
         $res = query("SELECT * FROM items WHERE id=?;", $id);
         if ($res === false) return array(
@@ -20,12 +25,12 @@
         $row = $res->fetch_assoc();
         return array(
             'status' => 200,
-            'message' => 'Email retrieved',
+            'message' => 'Item retrieved',
             'success' => true,
             'item' => $row,
         );
     }
 
-    echo json_encode(getEmail());
+    echo json_encode(getItem());
 
 ?>
