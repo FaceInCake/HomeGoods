@@ -11,7 +11,7 @@ function Contact (props) {
   return (
     <div className='Contact d-lg-flex'>
 
-      <div className='m-0 p-3 col-lg-6'>
+      <div className='m-0 p-3 p-lg-5 col-lg-6'>
         <Card>
           <CardImg top alt="Image of helping hands" src="https://thumbs.dreamstime.com/b/silhouette-people-helping-person-mountain-90378085.jpg"
             className="CardImage"/>
@@ -25,7 +25,7 @@ function Contact (props) {
         </Card>
       </div>
       
-      <div className='m-0 p-3 col-lg-6'>
+      <div className='m-0 p-3 p-lg-5 col-lg-6'>
         <Card>
           <CardImg top alt="Gavel and block" className="CardImage"
             src="https://media.istockphoto.com/photos/judges-gavel-on-a-white-background-picture-id453975745?b=1&k=20&m=453975745&s=612x612&w=0&h=6-nBSbEsaOA7H8ptKIG54nQLxf-WRlurVC0XtVlcBKU="/>

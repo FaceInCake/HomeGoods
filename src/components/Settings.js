@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, CardBody, CardImg, CardTitle, CardText, Placeholder } from "reactstrap";
-import { themes } from "../App";
+import { themes, changeTheme } from "../App";
 import { UserContext } from "../store/UserContext";
 import { get, post } from "../Database";
 
@@ -57,21 +57,17 @@ function Settings (props) {
         <CardBody>
           <CardTitle tag="h3">Settings</CardTitle>
           <CardText>
-            <div>Username: {userContext.username}</div>
+            Username: {userContext.username}
           </CardText><hr/><CardText>
-            <div>Email: {email || <Placeholder animation="wave" xs={6}/>}</div>
-            <Button onClick={changeEmailCallback} color="warning" outline size="sm">Change Email</Button>
+            Email: {email || <Placeholder animation="wave" xs={6}/>}
+            <Button className="ms-3" onClick={changeEmailCallback} color="warning" size="sm">Change Email</Button>
           </CardText><hr/><CardText>
-            <div>Password: ••••••••••••</div>
-            <Button onClick={changePasswordCallback} color="warning" outline size="sm">Change Password</Button>
-          </CardText><hr/><CardText>
-            {themes.map(s => (
-              <Button className="m-2" key={s} onClick={() => {
-                localStorage.setItem("theme", s);
-                document.documentElement.className = s;
-              }} color="info" size="sm">{s}</Button>
-            ))}
-          </CardText>
+            Password: ••••••••••••
+            <Button className="ms-3" onClick={changePasswordCallback} color="warning" size="sm">Change Password</Button>
+          </CardText><hr/>
+          {themes.map(s => (
+            <Button className="m-2" key={s} onClick={() => changeTheme(s)} color="info" size="sm">{s}</Button>
+          ))}
         </CardBody>
       </Card>
     </div>
